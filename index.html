@@ -8,19 +8,35 @@
   </head>
   <body>
     <div class="container">
-      <div class="header">add new person</div> 
-      <form id="input_form" action="">
-        <label for="enter your name"></label>
-        enter person name
-        <input type="text" name="name_input" id="name_id" class="name_id">
-        input age
-        <label for="enter your age"></label>
-        <input type="number" name="age" id="age_id" class="age_input">
-
-        <input id="submit_button" type="submit" value="submit">
-
-      </form>
+      <div class="container">
+        <div class="header">add new person</div>
+        <div class="text">
+          <form id="input_form" action="" class="text">
+            <label for="enter your name"></label>
+            enter person name
+            <input type="text" name="name_input" id="name_id" class="name_id">
+            input age
+            <label for="enter your age"></label>
+            <input type="number" name="age" id="age_id" class="age_input">
+    
+            <input id="submit_button" type="submit" value="submit">
+          </form>
+        </div>
+      </div>
     </div>
+      <div class="people-container">
+        People container
+        <div class="people">
+          <div class="person">
+            <div class="name">
+              jason
+            </div>
+            <div class="age">
+              16
+            </div>
+          </div>
+        </div>
+      </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

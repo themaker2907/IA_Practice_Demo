@@ -18,6 +18,17 @@ function clickHandler(e){
     nameArr.push(formData.get("name_input"));
     ageArr.push(formData.get("age"));
 
-    nameArr
+    viewNameArr();
+    viewAgeArr();
+}
 
+function viewNameArr(){
+    for(let i = 0; i < nameArr.length; i++) {
+        console.log(nameArr[i]);
+    }
+}
+function viewAgeArr(){
+    ageArr.forEach((item) =>{
+        console.log(item);
+    })
 }
