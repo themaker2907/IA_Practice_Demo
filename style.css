@@ -3,7 +3,6 @@
   margin: 0;
   box-sizing: border-box;
   font-family: sans-serif;
-  cursor: pointer;
 }
 
 .container {
@@ -21,6 +20,7 @@
   margin-top: 50px;
 }
 .people-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,8 +37,14 @@
 }
 .person{
   width: 50vw;
-  height: 8vh;
+  height: 25vh;
   font-size: 20px;
   box-shadow: 10px 10px 20px 5px grey;
   border-radius: 20px;
+}
+.picture {
+  /* position: absolute; */
+  left:0;
+  top:0;
+  cursor: pointer;
 }

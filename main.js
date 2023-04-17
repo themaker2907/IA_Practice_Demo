@@ -1,19 +1,31 @@
 import './style.css'
+import Person from './Person.js';
 
 const form = document.getElementById('input_form');
 const submitButton = document.getElementById('submit_button');
+const addRandomPersonButton = document.getElementById('randomPersonButton');
+
+new Person("jason", 60);
+console.log(jason.getName());
+
+
+addRandomPersonButton.addEventListener('click', ()=> {
+    getRandomUser();
+})
 
 let nameArr = []
 let ageArr = []
 
-getRandomUser();
 
 async function getRandomUser() {
     const data = await fetch('https://randomuser.me/api/');
-    .then(response) => {
-        let fetchedData = response.json();
-        console.log(fetchedData);
-    });
+    const json = await data.json();
+    console.log(json.results[0])
+    let name = json.results[0].name.first;
+    let age = json.results[0].dob.age;
+    let picture = json.results[0].picture.large;
+    console.log(picture);
+    addPerson(name, age, picture);
 }
 
 console.log(form);
@@ -48,11 +60,15 @@ function viewAgeArr(){
 const peopleContainer = document.querySelector('.person');
 
 
-function addPerson(name, age){
+function addPerson(name, age, picture = null){
     //personDiv is the container for name and age div
     const personDiv = document.createElement('div');
     personDiv.className = 'person';
     peopleContainer.appendChild(personDiv);
+
+    personDiv.addEventListener('click', () => {
+       personDiv.remove(); 
+    });
 
     //create and append nameDiv to personDiv
     const nameDiv = document.createElement('div');
@@ -64,8 +80,12 @@ function addPerson(name, age){
     const ageDiv = document.createElement('div');
     ageDiv.innerHTML = `age: ${age}`;
     personDiv.appendChild(ageDiv);
+
+    if(picture != null) {
+        const pictureIMG = document.createElement('img')
+        pictureIMG.src = picture;
+        pictureIMG.className = 'picture'
+        personDiv.appendChild(pictureIMG);
+    }
 }
-// addPerson("jason", 16);
-// addPerson("ethan", 16);
-// addPerson("sam", 16);
-// addPerson("kevin the monke", 16);
+
