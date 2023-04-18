@@ -1,40 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="container">
-        <div class="header">add new person</div>
-        <div class="text">
-          <form id="input_form" action="" class="text">
-            <label for="enter your name"></label>
-            enter person name
-            <input type="text" name="name_input" id="name_id" class="name_id">
-            input age
-            <label for="enter your age"></label>
-            <input type="number" name="age" id="age_id" class="age_input">
-    
-            <input id="submit_button" type="submit" value="submit">
-          </form>
-          <button id="randomPersonButton">add random person</button>
-        </div>
-      </div>
-    </div>
-      <div class="people-container">
-        People container
-        <div class="people">
-          <div class="person">
-            
 
-            
-          </div>
-        </div>
-      </div>
-    <script type="module" src="/main.js"></script>
-  </body>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="text">
+
+      <div class="header">Add New Person</div>
+
+      <form id="input_form" action="">
+        <label for="name">Enter Persons Name:</label>
+        <input type="text" name="name" id="name_id" class="name_input">
+        <label for="age">Enter Persons Age:</label>
+        <input type="number" name="age" id="age_id" class="age_input">
+        <input id="submit_button" type="submit" value="Submit">
+      </form>
+
+      <button id="randomPersonButton">Add Random Person</button>
+    </div>
+
+  </div>
+
+  <div class="people-container">
+
+    <div class="people-header">
+
+      View People
+
+    </div>
+
+    <div class="people">
+
+    </div>
+
+  </div>
+
+  <script type="module" src="/main.js"></script>
+
+</body>
+
 </html>

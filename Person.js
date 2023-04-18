@@ -1,41 +1,80 @@
-export default class Person{
+import { gsap } from "gsap";
+
+export default class Person {
+
     constructor(name, age, picture = null) {
-        this.name = name;
-        this.age = age;
-        this.picture = picture;
+  
+      this.name = name;
+  
+      this.age = age;
+  
+      this.picture = picture;
+  
+      this.container = document.querySelector('.people');
+  
+      this.createElement();
+  
     }
-
-
-    addPerson(name, age, picture = null){
-        //personDiv is the container for name and age div
-        const personDiv = document.createElement('div');
-        personDiv.className = 'person';
-        peopleContainer.appendChild(personDiv);
-    
-        personDiv.addEventListener('click', () => {
-           personDiv.remove(); 
+  
+  
+  
+  
+    createElement() {
+  
+      //personDiv is the container for 'name' and 'age' divs
+  
+      const personDiv = document.createElement('div');
+      personDiv.addEventListener('mouseenter', () =>{
+        gsap.to(personDiv, {
+            boxShadow: '10px 10px 20px 5px rgba(0, 0, 0, 0.7)',
         });
+      });
+      personDiv.addEventListener('mouseleave', () =>{
+        gsap.to(personDiv, {
+            boxShadow: '10px 10px 20px 5px rgba(0, 0, 0, 0.294)',
+        });
+      });
     
-        //create and append nameDiv to personDiv
-        const nameDiv = document.createElement('div');
-        nameDiv.innerHTML = `Name: ${name}`;
-        personDiv.appendChild(nameDiv)
-    
-        //create and append ageDiv to personDiv
-    
-        const ageDiv = document.createElement('div');
-        ageDiv.innerHTML = `age: ${age}`;
-        personDiv.appendChild(ageDiv);
-    
-        if(picture != null) {
-            const pictureIMG = document.createElement('img')
-            pictureIMG.src = picture;
-            pictureIMG.className = 'picture'
-            personDiv.appendChild(pictureIMG);
-        }
-    }
+      personDiv.className = 'person';
 
-    getName(){
-        return this.name;
+      gsap.to(personDiv, ({delay:1, width: '50vw', height: '15vh'}));
+  
+      this.container.appendChild(personDiv);
+  
+      personDiv.addEventListener('click', () => {
+  
+        personDiv.remove();
+
+      });
+  
+  
+  
+  
+      if (this.picture) {
+        const pictureIMG = document.createElement('img');
+
+        pictureIMG.src = this.picture;
+        pictureIMG.className = 'picture';
+  
+        gsap.to(pictureIMG, {duration: 1, delay: 0.5, opacity: 1});
+  
+        personDiv.appendChild(pictureIMG);
+
+      }
+
+      //create and append nameDiv to personDiv
+  
+      const nameDiv = document.createElement('div');
+      nameDiv.innerHTML = `Name: ${this.name}`;
+      personDiv.appendChild(nameDiv);
+  
+      //create and append ageDiv to personDiv
+  
+      const ageDiv = document.createElement('div');
+      ageDiv.innerHTML = `Age: ${this.age}`;
+      personDiv.appendChild(ageDiv);
+  
     }
-}
+  
+  }
+  
