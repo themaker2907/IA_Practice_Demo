@@ -1,6 +1,24 @@
-import './style.css';
-
+import './style.css'; 
+import { collection, addDoc } from "firebase/firestore";
+import {db} from './db.js';
 import Person from './Person.js';
+
+addData("jason", 16);
+addData("ethan", 16);
+
+async function addData(name, age){
+  try {
+    const docRef = await addDoc(collection(db, "people"), {
+      name: name,
+      age: age,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+
 
 const form = document.getElementById('input_form');
 const submitButton = document.getElementById('submit_button');

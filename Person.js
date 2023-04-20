@@ -5,20 +5,13 @@ export default class Person {
     constructor(name, age, picture = null) {
   
       this.name = name;
-  
       this.age = age;
-  
       this.picture = picture;
-  
       this.container = document.querySelector('.people');
-  
       this.createElement();
   
     }
-  
-  
-  
-  
+
     createElement() {
   
       //personDiv is the container for 'name' and 'age' divs
@@ -40,16 +33,7 @@ export default class Person {
       gsap.to(personDiv, ({delay:1, width: '50vw', height: '15vh'}));
   
       this.container.appendChild(personDiv);
-  
-      personDiv.addEventListener('click', () => {
-  
-        personDiv.remove();
 
-      });
-  
-  
-  
-  
       if (this.picture) {
         const pictureIMG = document.createElement('img');
 
@@ -61,10 +45,25 @@ export default class Person {
         personDiv.appendChild(pictureIMG);
 
       }
+  
+      personDiv.addEventListener('click', () => {
+        gsap.to(personDiv, {
+          opacity:0,
+          duration:3,
+          height: 0,
+        })
+          .then(() => {
+          personDiv.remove();
+        });
+      });
+
 
       //create and append nameDiv to personDiv
   
       const nameDiv = document.createElement('div');
+      setTimeout(() => {
+        k
+      }, 5000);
       nameDiv.innerHTML = `Name: ${this.name}`;
       personDiv.appendChild(nameDiv);
   
