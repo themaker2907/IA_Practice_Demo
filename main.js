@@ -1,23 +1,8 @@
-import './style.css'; 
-import { collection, addDoc } from "firebase/firestore";
-import {db} from './db.js';
+
+import './style.css';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { db } from './db.js';
 import Person from './Person.js';
-
-addData("jason", 16);
-addData("ethan", 16);
-
-async function addData(name, age){
-  try {
-    const docRef = await addDoc(collection(db, "people"), {
-      name: name,
-      age: age,
-    });
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-}
-
 
 
 const form = document.getElementById('input_form');
@@ -25,18 +10,81 @@ const submitButton = document.getElementById('submit_button');
 const addRandomPersonButton = document.getElementById('randomPersonButton');
 const peopleContainer = document.querySelector('.people');
 
-// new Person('Bob', 60);
+
+let nameArr = [];
+let ageArr = [];
+let pictureArr = [];
+let personArr = [];
+
+// addData('Bob', 60);
+// addData('Cindy', 20);
+
+/**
+* DB
+*/
+
+async function addData(name, age) {
+
+  try {
+
+    const docRef = await addDoc(collection(db, 'people'), {
+
+      name: name,
+      age: age,
+
+    });
+
+    console.log('Document written with ID: ', docRef.id);
+
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+
+}
+
+async function getData() {
+
+  const querySnapshot = await getDocs(collection(db, 'people'));
+
+  querySnapshot.forEach((doc) => {
+
+    nameArr.push(doc.data().name);
+    ageArr.push(doc.data().age);
+
+
+    personArr.push({
+
+      name: doc.data().name,
+      age: doc.data().age,
+      favSport: 'Basketball',
+
+    });
+
+    // console.log(`${doc.id} => ${doc.data().age}`);
+
+    addPerson(doc.data().name, doc.data().age);
+
+  });
+
+}
+
+getData().then(() => {
+
+  personArr.forEach((person) => {
+    console.log(person);
+  });
+
+});
+
+/**
+* Event Listener
+*/
 
 addRandomPersonButton.addEventListener('click', () => {
 
   getRandomUser();
 
 });
-
-
-let nameArr = [];
-let ageArr = [];
-let pictureArr = [];
 
 async function getRandomUser() {
 
@@ -45,7 +93,6 @@ async function getRandomUser() {
   let name = json.results[0].name.first;
   let age = json.results[0].dob.age;
   let picture = json.results[0].picture.large;
-
   addPerson(name, age, picture);
 
 }
@@ -65,3 +112,8 @@ function clickHandler(e) {
 }
 
 submitButton.addEventListener('click', clickHandler);
+
+//storage
+import { storage, ref } from './db.js';
+const storageRef = ref(storage);
+const imagesRef = ref(storage, 'images');
